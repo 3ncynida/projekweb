@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Penjualan</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container mt-5">
+
+@extends('layout.app')
+
+@section('content')
+<div class="mb-3">
+    <a href="{{ route('penjualan.form') }}" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Tambah Penjualan
+    </a>
+</div>
+<div class="main-content">
     <h2>Daftar Penjualan</h2>
     <table class="table table-bordered">
         <thead>
@@ -17,20 +17,25 @@
                 <th>Total Harga</th>
                 <th>Pelanggan</th>
                 <th>Dibuat</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
-        @foreach($penjualan as $p)
-            <tr>
-                <td>{{ $p->PenjualanID }}</td>
-                <td>{{ $p->TanggalPenjualan }}</td>
-                <td>{{ number_format($p->TotalHarga, 2) }}</td>
-                <td>{{ $p->pelanggan ? $p->pelanggan->NamaPelanggan : '-' }}</td>
-                <td>{{ $p->created_at }}</td>
-            </tr>
+                @foreach($penjualan as $p)
+                        <tr>
+                                <td>{{ $p->PenjualanID }}</td>
+                                <td>{{ $p->TanggalPenjualan }}</td>
+                                <td>{{ number_format($p->TotalHarga, 2) }}</td>
+                                <td>{{ $p->pelanggan ? $p->pelanggan->NamaPelanggan : '-' }}</td>
+                                <td>{{ $p->created_at }}</td>
+                                <td>
+                                    <a href="{{ route('penjualan.edit', $p->PenjualanID) }}" class="btn btn-warning btn-sm">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </td>
+                        </tr>
         @endforeach
         </tbody>
     </table>
 </div>
-</body>
-</html>
+@endsection
