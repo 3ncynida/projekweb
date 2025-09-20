@@ -9,44 +9,55 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="https://adminlte.io/themes/v3/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ asset('s.jpg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">Tirto Rahardi</a> 
+                    <a href="#" class="d-block">{{ Auth::user()->role ?? '-' }}</a>
             </div>
         </div>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="/dashboard" class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
+                    <a href="/admin/dashboard" class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/pelanggan" class="nav-link {{ request()->is('pelanggan') ? 'active' : '' }}">
+                    <a href="/admin/pelanggan" class="nav-link {{ request()->is('admin/pelanggan') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Pelanggan</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/penjualan" class="nav-link {{ request()->is('penjualan') ? 'active' : '' }}">
+                    <a href="/admin/penjualan" class="nav-link {{ request()->is('admin/penjualan') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>Penjualan</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/produk" class="nav-link {{ request()->is('produk') ? 'active' : '' }}">
+                    <a href="/admin/produk" class="nav-link {{ request()->is('admin/produk') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-box"></i>
                         <p>Produk</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/detail-penjualan" class="nav-link {{ request()->is('detail-penjualan') ? 'active' : '' }}">
+                    <a href="admin/detail-penjualan" class="nav-link {{ request()->is('admin/detail-penjualan') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-file-invoice"></i>
                         <p>Detail Penjualan</p>
                     </a>
+                </li>
+                
+                <li class="nav-item mt-4">
+                    <form action="{{ route('logout') }}" method="POST" class="nav-link">
+                        @csrf
+                        <button type="submit" class="btn btn-danger btn-block">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
                 </li>
             </ul>
         </nav>
